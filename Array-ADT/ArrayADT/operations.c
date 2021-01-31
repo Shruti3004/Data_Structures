@@ -93,6 +93,42 @@ int impLinearSearch(struct Array *arr, int key)
     return -1;
 }
 
+// Iterative version of Binary Search
+int binarySearch(struct Array arr, int key)
+{
+    int l, h, mid;
+    l = 0;
+    h = arr.length - 1;
+    while (l <= h)
+    {
+        mid = (l + h) / 2;
+        if (key == arr.A[mid])
+            return mid;
+        else if (key < arr.A[mid])
+            h = mid - 1;
+        else
+            l = mid + 1;
+    }
+    return -1;
+}
+
+// Recursive version of Binary Search
+int recBinarySearch(struct Array arr, int l, int h, int key)
+{
+    int mid;
+    if (l <= h)
+    {
+        mid = (l + h) / 2;
+        if (key == arr.A[mid])
+            return mid;
+        else if (key < arr.A[mid])
+            return recBinarySearch(arr, l, mid - 1, key);
+        else
+            return recBinarySearch(arr, mid + 1, h, key);
+    }
+    return -1;
+}
+
 int main()
 {
     struct Array arr = {{2, 3, 4, 5, 6}, 10, 5};
@@ -104,6 +140,8 @@ int main()
     // int lSearch = linearSearch(arr, 4);
     // printf("%d", lSearch);
 
-    printf("%d", impLinearSearch(&arr, 6));
+    // printf("%d", impLinearSearch(&arr, 6));
+    // printf("%d", binarySearch(arr, 5));
+    printf("%d", recBinarySearch(arr, 0, arr.length, 2));
     return 0;
 }
