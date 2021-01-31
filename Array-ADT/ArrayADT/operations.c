@@ -44,7 +44,7 @@ void insert(struct Array *arr, int index, int x)
 // Delete Function
 void delete (struct Array *arr, int index)
 {
-    if (index < arr->length)
+    if (index >= 0 && index < arr->length)
     {
         for (int i = index; i < arr->length - 1; i++)
         {
@@ -54,12 +54,27 @@ void delete (struct Array *arr, int index)
     }
 }
 
+// Linear Search
+int linearSearch(struct Array arr, int key)
+{
+    for (int i = 0; i < arr.length; i++)
+    {
+        if (arr.A[i] == key)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main()
 {
     struct Array arr = {{2, 3, 4, 5, 6}, 10, 5};
     // append(&arr, 10);
     // insert(&arr, 2, 10);
-    delete (&arr, 2);
-    display(arr);
+    // delete (&arr, 0);
+    int lSearch = linearSearch(arr, 5);
+    printf("%d", lSearch);
+    // display(arr);
     return 0;
 }
