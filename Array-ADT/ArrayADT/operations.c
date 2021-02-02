@@ -129,6 +129,70 @@ int recBinarySearch(struct Array arr, int l, int h, int key)
     return -1;
 }
 
+// Get
+int get(struct Array arr, int index)
+{
+    if (index >= 0 && index < arr.length)
+    {
+        return arr.A[index];
+    }
+    return -1;
+}
+
+// Set
+void set(struct Array *arr, int index, int x)
+{
+    if (index >= 0 && index < arr->length)
+    {
+        arr->A[index] = x;
+    }
+}
+
+// Max
+int Max(struct Array arr)
+{
+    int max = arr.A[0];
+    for (int i = 1; i < arr.length; i++)
+    {
+        if (arr.A[i] > max)
+        {
+            max = arr.A[i];
+        }
+    }
+    return max;
+}
+
+// Min
+int Min(struct Array arr)
+{
+    int min = arr.A[0];
+    for (int i = 1; i < arr.length; i++)
+    {
+        if (arr.A[i] < min)
+        {
+            min = arr.A[i];
+        }
+    }
+    return min;
+}
+
+// Sum
+int sum(struct Array arr)
+{
+    int total = 0;
+    for (int i = 0; i < arr.length; i++)
+    {
+        total += arr.A[i];
+    }
+    return total;
+}
+
+// Average
+float avg(struct Array arr)
+{
+    return (float)sum(arr) / arr.length;
+}
+
 int main()
 {
     struct Array arr = {{2, 3, 4, 5, 6}, 10, 5};
@@ -142,6 +206,16 @@ int main()
 
     // printf("%d", impLinearSearch(&arr, 6));
     // printf("%d", binarySearch(arr, 5));
-    printf("%d", recBinarySearch(arr, 0, arr.length, 2));
+    // printf("%d", recBinarySearch(arr, 0, arr.length, 2));
+
+    // printf("%d", get(arr, 1));
+    // set(&arr, 1, 10);
+    // display(arr);
+
+    // printf("%d", Max(arr));
+    // printf("%d", Min(arr));
+    // printf("%d", sum(arr));
+    printf("%f", avg(arr));
+    
     return 0;
 }
